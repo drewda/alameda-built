@@ -1,4 +1,4 @@
-name: Fetch planning permits
+name: Fetch development forecast
 on:
   workflow_dispatch:
   schedule:
