@@ -39,4 +39,6 @@ const downloadFile = (async (url, path) => {
   await page._client.send('Page.setDownloadBehavior', {behavior: 'allow', downloadPath: './'});
   const [downloadLink] = await page.$x("//a[contains(., 'Download results')]");
   await downloadLink.click()
+  await page.waitForTimeout(5000)
+  await browser.close()
 })();
