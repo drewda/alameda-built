@@ -1,0 +1,29 @@
+name: Fetch planning permits
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+jobs:
+  scheduled:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: |
+        sudo apt install libgbm1
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    - run: pip install -r requirements.txt
+    - name: fetch-development-forecast
+      run: |-
+        cd development-forecast
+        python fetch-development-forecast.py
+    - name: Commit and push if it changed
+      run: |-
+        git config user.name "Alameda Built Bot"
+        git config user.email "dda+alameda+built@dara-abrams.com"
+        git add -A
+        timestamp=$(date -u)
+        git commit -m "Latest version of development forecast" || exit 0
+        git push
