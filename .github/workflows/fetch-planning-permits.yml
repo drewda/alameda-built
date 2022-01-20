@@ -24,7 +24,7 @@ jobs:
       run: |-
         git config user.name "Alameda Built Bot"
         git config user.email "dda+alameda+built@dara-abrams.com"
-        git add -A
+        git add '*.csv'
         timestamp=$(date -u)
         git commit -m "Latest version of planning permits" || exit 0
         git push
