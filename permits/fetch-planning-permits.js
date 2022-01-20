@@ -30,7 +30,10 @@ const downloadFile = (async (url, path) => {
     searchApplicationsLink.click()
   ])
   // await page.screenshot({ path: 'page2.png' });
-  await page.select('#ctl00_PlaceHolderMain_generalSearchForm_ddlGSPermitType', 'Planning/Pre-Application/NA/NA'),
+
+  // NOTE: disabling this so we can instead get all the permits, not just Planning ones
+  // await page.select('#ctl00_PlaceHolderMain_generalSearchForm_ddlGSPermitType', 'Planning/Pre-Application/NA/NA'),
+
   // await page.screenshot({ path: 'page2b.png' });
   await page.waitForTimeout(500)
   await page.click('#ctl00_PlaceHolderMain_btnNewSearch')
